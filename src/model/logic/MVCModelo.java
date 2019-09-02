@@ -87,10 +87,7 @@ public class MVCModelo {
 
 				pila.push(i);
 			}
-
-
 		}
-
 	} catch (FileNotFoundException e) {
 		e.printStackTrace();
 	} finally{
@@ -103,7 +100,6 @@ public class MVCModelo {
 				e.printStackTrace();
 			}
 		}
-
 	}
 	System.out.print("-------- /nID zona de inicio:"+agregar.darInicioID()+"-------- /nID Destino:"+agregar.darDestinoID()+"-------- /nHora del dia:"+agregar.darHora()+"-------- /nTiempo Promedio:"+agregar.darTiempoPromedioEnSegundos());
 	}

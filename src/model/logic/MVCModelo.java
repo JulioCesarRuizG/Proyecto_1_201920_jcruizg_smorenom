@@ -7,8 +7,7 @@ import java.util.ArrayList;
 
 import com.opencsv.CSVReader;
 
-import model.data_structures.ArregloDinamico;
-import model.data_structures.IArregloDinamico;
+
 import model.data_structures.Queue;
 import model.data_structures.Stack;
 import model.data_structures.Viaje;

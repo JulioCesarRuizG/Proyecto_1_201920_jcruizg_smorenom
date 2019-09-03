@@ -101,6 +101,10 @@ public class MVCModelo {
 					min=inicioID;
 				if(inicioID>max)
 					max=inicioID;
+				if(destinoID>min)
+					min=inicioID;
+				if(destinoID>max)
+					max=inicioID;
 
 				Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG,null);
 				agregar = i;
@@ -128,10 +132,7 @@ public class MVCModelo {
 				double desviacionEstandar=Double.parseDouble(nextLine[4]);
 				double tiempoPromedioGEnSegundos=Double.parseDouble(nextLine[5]);
 				double desviacionEstandarG=Double.parseDouble(nextLine[6]);
-				if(inicioID>min)
-					min=inicioID;
-				if(inicioID>max)
-					max=inicioID;
+				
 				Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG,null);
 				agregar = i;
 
@@ -160,6 +161,10 @@ public class MVCModelo {
 					if(inicioID>min)
 						min=inicioID;
 					if(inicioID>max)
+						max=inicioID;
+					if(destinoID>min)
+						min=inicioID;
+					if(destinoID>max)
 						max=inicioID;
 					Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG,null);
 					agregar = i;
@@ -214,7 +219,14 @@ public class MVCModelo {
 					double desviacionEstandar=Double.parseDouble(nextLine[4]);
 					double tiempoPromedioGEnSegundos=Double.parseDouble(nextLine[5]);
 					double desviacionEstandarG=Double.parseDouble(nextLine[6]);
-
+					if(destinoID>min)
+						min=inicioID;
+					if(destinoID>max)
+						max=inicioID;
+					if(inicioID>min)
+						min=inicioID;
+					if(inicioID>max)
+						max=inicioID;
 					Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG,null);
 					agregar = i;
 

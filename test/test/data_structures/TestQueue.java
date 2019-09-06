@@ -6,6 +6,8 @@ import java.util.Iterator;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import model.data_structures.Node;
 import model.data_structures.Queue;
 import model.data_structures.Viaje;
 
@@ -14,11 +16,15 @@ public class TestQueue {
 	/**
 	 * Viajes usados en las pruebas
 	 */
-	private Viaje quinto = new Viaje(100, 101, 102, 103, 104, 105, 106, null);
-	private Viaje cuarto = new Viaje(22,23,24,25,26,27,28, null);
-	private Viaje tercero = new Viaje(15,16,17,18,19,20,21, cuarto);
-	private Viaje segundo = new Viaje(8,9,10,11,12,13,14, tercero);
-	private Viaje primero = new Viaje(1,2,3,4,5,6,7, segundo);
+	private Viaje quinto = new Viaje(100, 101, 102, 103, 104, 105, 106);
+	private Viaje cuarto = new Viaje(22,23,24,25,26,27,28);
+	private Viaje tercero = new Viaje(15,16,17,18,19,20,21);
+	private Viaje segundo = new Viaje(8,9,10,11,12,13,14);
+	private Viaje primero = new Viaje(1,2,3,4,5,6,7);
+	private Node d = new Node(cuarto, null);
+	private Node c = new Node(tercero, d);
+	private Node b = new Node(segundo, c);
+	private Node a = new Node(primero, b);
 	
 	private Queue cola;
 	
@@ -30,7 +36,7 @@ public class TestQueue {
 	{
 		try
 		{
-			cola = new Queue(primero);
+			cola = new Queue(a);
 		}
 		catch (Exception e) {
 			fail("Se ha producido un error en la creación de la cola");
@@ -47,7 +53,7 @@ public class TestQueue {
 		try
 		{
 			cola.enQueue(quinto);
-			assertEquals("El viaje no fue agregado correctamente", quinto, cola.darPrimero().darSiguiente().darSiguiente().darSiguiente().darSiguiente());
+			assertEquals("El viaje no fue agregado correctamente", cola.darUltimo(), (Viaje)cola.darContenedorPrimero().darSiguiente().darSiguiente().darSiguiente().darSiguiente().darItem());
 		}
 		catch (Exception e) {
 			fail("Error al agregar el viaje");

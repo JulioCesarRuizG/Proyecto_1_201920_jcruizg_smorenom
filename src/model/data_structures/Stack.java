@@ -6,11 +6,11 @@ import java.util.Iterator;
 
 public class Stack implements IStack{
 
-	private Viaje primero;
+	private Node primero;
 	/**
 	 * Crea una nueva pila
 	 */
-	public Stack(Viaje pPrimero)
+	public Stack(Node pPrimero)
 	{
 		primero = pPrimero;
 	}
@@ -20,16 +20,16 @@ public class Stack implements IStack{
 	 * @param valor a agregar a la pila
 	 */
 	public void push(Object valor) {
+		Node i = new Node(valor, null);
 		if(darPrimero() == null)
 		{
-			cambiarPrimero((Viaje) valor);
+			cambiarPrimero(i);
 		}
 		else
 		{
-			Viaje nuevo  = (Viaje) valor;
-			Viaje cambiar  = primero;
-			cambiarPrimero(nuevo);
-			nuevo.cambiarSiguiente(cambiar);
+			Node cambiar  = primero;
+			cambiarPrimero(i);
+			i.cambiarSiguiente(cambiar);
 		}
 	}
 
@@ -44,9 +44,9 @@ public class Stack implements IStack{
 		}
 		else
 		{
-			Viaje eliminar = primero;
+			Node eliminar = primero;
 			primero = primero.darSiguiente();
-			return eliminar;
+			return (Viaje) eliminar.darItem();
 		}
 	}
 
@@ -55,7 +55,7 @@ public class Stack implements IStack{
 	 * @return true si está vacío, false en caso contrario
 	 */
 	public boolean isEmpty() {
-		if(darPrimero() == null)
+		if(darContenedorPrimero() == null)
 		{
 			return true;
 		}
@@ -68,7 +68,7 @@ public class Stack implements IStack{
 	 */
 	public int size(){
 		int tamano = 1;
-		Viaje actual = primero;
+		Node actual = primero;
 		if(darPrimero() == null)
 		{
 			return 0;
@@ -86,11 +86,11 @@ public class Stack implements IStack{
 	 * @return pila de objetos iterable
 	 */
 	public Iterator iterator() {
-		Viaje actual =  primero;
+		Node actual =  primero;
 		Collection lista = new ArrayList<>();
 		while(actual.darSiguiente() != null)
 		{
-			lista.add(actual);
+			lista.add((Viaje)actual.darItem());
 			actual = actual.darSiguiente();
 		}
 		return lista.iterator();
@@ -102,14 +102,18 @@ public class Stack implements IStack{
 	 */
 	public Viaje darPrimero()
 	{
-		return primero;
+		return (Viaje) primero.darItem();
 	}
 
+	public Node darContenedorPrimero()
+	{
+		return primero;
+	}
 	/**
 	 * Cambia el primer elemento de la pila
 	 * @param valor por el que se cambia
 	 */
-	public void cambiarPrimero(Viaje cambio)
+	public void cambiarPrimero(Node cambio)
 	{
 		primero = cambio;
 	}

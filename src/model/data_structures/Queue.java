@@ -7,16 +7,21 @@ import java.util.List;
 
 public class Queue implements IQueue{
 
-	private Viaje primero;
-	private Viaje ultimo;
+	private Node primero;
+	private Node ultimo;
 	
 	/**
 	 * Crea una nueva cola
 	 */
-	public Queue(Viaje pPrimero)
+	public Queue(Node pPrimero)
 	{
 		primero = pPrimero;
-		ultimo = pPrimero;
+		Node actual = primero;
+		while(actual.darSiguiente() != null)
+		{
+			actual = actual.darSiguiente();
+		}
+		ultimo = actual;
 	}
 	
 	/**
@@ -24,6 +29,10 @@ public class Queue implements IQueue{
 	 * @return primer viaje
 	 */
 	public Viaje darPrimero()
+	{
+		return (Viaje) primero.darItem();
+	}
+	public Node darContenedorPrimero()
 	{
 		return primero;
 	}
@@ -34,7 +43,7 @@ public class Queue implements IQueue{
 	 */
 	public Viaje darUltimo()
 	{
-		return ultimo;
+		return (Viaje) ultimo.darItem();
 	}
 
 	/**
@@ -43,14 +52,15 @@ public class Queue implements IQueue{
 	 */
 	public void enQueue(Object valor) 
 	{
+		Node i = new Node(valor, null);
 		if(darPrimero() == null)
 		{
-			primero = (Viaje) valor;
-			ultimo =  (Viaje) valor;
+			primero = i;
+			ultimo =  i;
 		}
 		else
 		{
-			ultimo.cambiarSiguiente((Viaje) valor);
+			ultimo.cambiarSiguiente(i);
 			ultimo = ultimo.darSiguiente();
 		}
 	}
@@ -67,16 +77,16 @@ public class Queue implements IQueue{
 		}
 		else if(primero.darSiguiente() == null)
 		{
-			Viaje eliminar = primero;
+			Node eliminar = primero;
 			primero = null;
 			ultimo = null;
-			return eliminar;
+			return (Viaje) eliminar.darItem();
 		}
 		else
 		{
-			Viaje eliminar = primero;
+			Node eliminar = primero;
 			primero = primero.darSiguiente();
-			return eliminar;
+			return (Viaje) eliminar.darItem();
 		}
 	}
 
@@ -104,7 +114,7 @@ public class Queue implements IQueue{
 		else
 		{
 			int cantidad = 1;
-			Viaje actual = primero;
+			Node actual = primero;
 			while(actual.darSiguiente() != null)
 			{
 				actual = actual.darSiguiente();
@@ -119,11 +129,11 @@ public class Queue implements IQueue{
 	 * @return cola de objetos iterables
 	 */
 	public Iterator iterator() {
-		Viaje actual =  primero;
+		Node actual =  primero;
 		Collection lista = new ArrayList<Viaje>();
 		while(actual.darSiguiente() != null)
 		{
-			lista.add(actual);
+			lista.add((Viaje)actual.darItem());
 			actual = actual.darSiguiente();
 		}
 		return lista.iterator();

@@ -22,10 +22,10 @@ public class TestMVCModelo {
 		//./data/bogota-cadastral-2018-1-All-HourlyAggregate.csv
 		try
 		{
-			modelo= new MVCModelo("./data/pruebas-diez.csv");
+			modelo= new MVCModelo(2);
 		}
 		catch (Exception e) {
-			fail("Error al cargar el archivo" +'"'+"pruebas-diez"+'"');
+			fail("Error al cargar los archivos: "+"/n"+"bogota-cadastral-2018-2-WeeklyAggregate.csv"+"/n"+".data/bogota-cadastral-2018-2-HourlyAggregate.csv"+"/n"+".data/bogota-cadastral-2018-2-MonthlyAggregate.csv");
 		}
 	}
 	
@@ -37,10 +37,10 @@ public class TestMVCModelo {
 	{
 		try
 		{
-			modelo= new MVCModelo("./data/bogota-cadastral-2018-1-All-HourlyAggregate.csv");
+			modelo= new MVCModelo(3);
 		}
 		catch (Exception e) {
-			fail("Error al cargar el archivo" +'"'+"bogota-cadastral-2018-1-All-HourlyAggregate"+'"');
+			fail("Error al cargar los archivos: "+"/n"+"bogota-cadastral-2018-3-WeeklyAggregate.csv"+"/n"+".data/bogota-cadastral-2018-3-HourlyAggregate.csv"+"/n"+".data/bogota-cadastral-2018-3-MonthlyAggregate.csv");
 		}
 	}
 

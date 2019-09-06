@@ -38,22 +38,18 @@ public class MVCModelo {
 	if(trimestre==1){
 		pRutaM=".data/bogota-cadastral-2018-1-MonthlyAggregate.csv";
 	    pRutaH=".data/bogota-cadastral-2018-1-HourlyAggregate.csv";
-       
 	    pRutaS=".data/bogota-cadastral-2018-1-WeeklyAggregate.csv";
 	}else if(trimestre==2){
 		pRutaM=".data/bogota-cadastral-2018-2-MonthlyAggregate.csv";
 	    pRutaH=".data/bogota-cadastral-2018-2-HourlyAggregate.csv";
-       
 	    pRutaS=".data/bogota-cadastral-2018-2-WeeklyAggregate.csv";
 	}else if(trimestre==3){
 		pRutaM=".data/bogota-cadastral-2018-3-MonthlyAggregate.csv";
 	    pRutaH=".data/bogota-cadastral-2018-3-HourlyAggregate.csv";
-       
 	    pRutaS=".data/bogota-cadastral-2018-3-WeeklyAggregate.csv";
 	}else if(trimestre==4){
 		pRutaM=".data/bogota-cadastral-2018-4-MonthlyAggregate.csv";
 	    pRutaH=".data/bogota-cadastral-2018-4-HourlyAggregate.csv";
-       
 	    pRutaS=".data/bogota-cadastral-2018-4-WeeklyAggregate.csv";
 	}
 	  colaM= new Queue(null);
@@ -106,7 +102,7 @@ public class MVCModelo {
 				if(destinoID>max)
 					max=inicioID;
 
-				Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG,null);
+				Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG);
 				agregar = i;
 
 				colaM.enQueue(i);
@@ -133,7 +129,7 @@ public class MVCModelo {
 				double tiempoPromedioGEnSegundos=Double.parseDouble(nextLine[5]);
 				double desviacionEstandarG=Double.parseDouble(nextLine[6]);
 				
-				Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG,null);
+				Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG);
 				agregar = i;
 
 				pilaM.push(i);
@@ -166,7 +162,7 @@ public class MVCModelo {
 						min=inicioID;
 					if(destinoID>max)
 						max=inicioID;
-					Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG,null);
+					Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG);
 					agregar = i;
 
 					colaS.enQueue(i);
@@ -193,7 +189,7 @@ public class MVCModelo {
 					double tiempoPromedioGEnSegundos=Double.parseDouble(nextLine[5]);
 					double desviacionEstandarG=Double.parseDouble(nextLine[6]);
 
-					Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG,null);
+					Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG);
 					agregar = i;
 
 					pilaS.push(i);
@@ -227,7 +223,7 @@ public class MVCModelo {
 						min=inicioID;
 					if(inicioID>max)
 						max=inicioID;
-					Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG,null);
+					Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG);
 					agregar = i;
 
 					colaH.enQueue(i);
@@ -254,7 +250,7 @@ public class MVCModelo {
 					double tiempoPromedioGEnSegundos=Double.parseDouble(nextLine[5]);
 					double desviacionEstandarG=Double.parseDouble(nextLine[6]);
 
-					Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG,null);
+					Viaje i = new Viaje(inicioID,destinoID,hora,tiempoPromedioEnSegundos,desviacionEstandar,tiempoPromedioGEnSegundos,desviacionEstandarG);
 					agregar = i;
 
 					pilaH.push(i);

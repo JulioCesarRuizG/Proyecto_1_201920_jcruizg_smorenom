@@ -69,7 +69,7 @@ public class TestQueue {
 		setupEscenario1();
 		try
 		{
-			Viaje eliminado = cola.deQueue();
+			Viaje eliminado = (Viaje) cola.deQueue();
 			assertEquals("No es el viaje esperado", eliminado, primero);
 		}
 		catch (Exception e) {

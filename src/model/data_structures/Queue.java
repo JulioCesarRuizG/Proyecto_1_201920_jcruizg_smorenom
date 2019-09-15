@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public class Queue implements IQueue{
+public class Queue<T> implements IQueue{
 
 	private Node primero;
 	private Node ultimo;
@@ -28,11 +28,16 @@ public class Queue implements IQueue{
 	 * Devuelve el primer viaje de la cola
 	 * @return primer viaje
 	 */
-	public Viaje darPrimero()
+	public T darPrimero()
 	{
-		return (Viaje) primero.darItem();
+		return (T) primero.darItem();
 	}
 	public Node darContenedorPrimero()
+	{
+		return primero;
+	}
+	
+	public Node darPrimerNodo()
 	{
 		return primero;
 	}
@@ -41,9 +46,9 @@ public class Queue implements IQueue{
 	 * Devuelve el ultimo viaje de la cola
 	 * @return ultimo viaje
 	 */
-	public Viaje darUltimo()
+	public T darUltimo()
 	{
-		return (Viaje) ultimo.darItem();
+		return (T) ultimo.darItem();
 	}
 
 	/**
@@ -69,7 +74,7 @@ public class Queue implements IQueue{
 	 * Elimina un objeto de la cola
 	 * @return Sí lo elimina retorna el objeto, null en caso contrario
 	 */
-	public Viaje deQueue() {
+	public T deQueue() {
 
 		if(darPrimero() == null)
 		{
@@ -80,13 +85,13 @@ public class Queue implements IQueue{
 			Node eliminar = primero;
 			primero = null;
 			ultimo = null;
-			return (Viaje) eliminar.darItem();
+			return  (T) eliminar.darItem();
 		}
 		else
 		{
 			Node eliminar = primero;
 			primero = primero.darSiguiente();
-			return (Viaje) eliminar.darItem();
+			return  (T) eliminar.darItem();
 		}
 	}
 

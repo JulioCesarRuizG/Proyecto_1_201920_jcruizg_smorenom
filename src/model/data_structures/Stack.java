@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class Stack implements IStack{
+public class Stack<T> implements IStack{
 
 	private Node primero;
 	/**
@@ -37,7 +37,7 @@ public class Stack implements IStack{
 	 * Elimina el último valor de la pila
 	 * @return valor eliminado, null en caso contrario
 	 */
-	public Viaje pop() {
+	public T pop() {
 		if(primero == null)
 		{
 			return null;
@@ -46,7 +46,7 @@ public class Stack implements IStack{
 		{
 			Node eliminar = primero;
 			primero = primero.darSiguiente();
-			return (Viaje) eliminar.darItem();
+			return  (T) eliminar.darItem();
 		}
 	}
 
@@ -100,9 +100,9 @@ public class Stack implements IStack{
 	 * Devuelve el primer elemento de la pila
 	 * @return primero
 	 */
-	public Viaje darPrimero()
+	public T darPrimero()
 	{
-		return (Viaje) primero.darItem();
+		return  (T) primero.darItem();
 	}
 
 	public Node darContenedorPrimero()

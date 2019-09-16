@@ -383,6 +383,39 @@ public class MVCModelo {
 		}
 		return datos;
 	}
+	public Queue<Node<String>> compararTiemposZonaDadaDia(int zonaI, int zonaF, int zonaX,int dia) {
+
+	    int inicio=zonaI;
+	    int fin=zonaF;
+		Queue<Node<String>> datos=new Queue<Node<String>>(null);
+	    while(inicio<=fin){
+	    	  String tiempo1="No hay viajes";
+	    	  String tiempo2="No hay viajes";
+	    	  boolean x=false;
+	    	  Node check= colaS.darPrimerNodo();
+	    		while(check.darSiguiente()!=null&&!x){
+	    			Viaje actual= (Viaje)check.darItem();
+	    			if((actual.darInicioID()==inicio&&actual.darDestinoID()==zonaX&&actual.darParametro()==dia)){
+	    				tiempo1=String.valueOf(actual.darTiempoPromedioEnSegundos());
+	    			}
+	    			if((actual.darInicioID()==zonaX&&actual.darDestinoID()==inicio)&&actual.darParametro()==dia){
+	    				tiempo2=String.valueOf(actual.darTiempoPromedioEnSegundos());
+	    			}
+	    			if(!tiempo1.equals("No hay viajes")&&!tiempo2.equals("No hay viajes")){
+	    				x=true;
+	    			}
+	    			
+	    		}
+	    		
+	    		datos.enQueue(tiempo1+ "  de  " +inicio+ "  a  "+ zonaX+ "  vs  " +tiempo2+ "  de  "+ zonaX+ "  a  "+inicio);
+	    	
+	    			
+	    		
+	    		inicio++;
+	    		
+	    }
+		return datos;
+	}
 
 	//3B
 	// 1C

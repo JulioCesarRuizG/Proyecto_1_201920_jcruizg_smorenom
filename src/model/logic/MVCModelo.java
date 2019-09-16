@@ -333,6 +333,7 @@ public class MVCModelo {
 		}
 		return datos;
 	}
+	//1B
 	public Queue<Node<String>> consultarTiempoPromedioYDesviacionDia(int zonaOrigen, int zonaDestino, int dia) throws Exception
 	{
 		String info = "**Datos de los viajes**" + "\n" + "Tiempo promedio // Desviación estandar" + "\n";
@@ -383,6 +384,8 @@ public class MVCModelo {
 		}
 		return datos;
 	}
+
+	//3B
 	public Queue<Node<String>> compararTiemposZonaDadaDia(int zonaI, int zonaF, int zonaX,int dia) {
 
 	    int inicio=zonaI;
@@ -417,9 +420,33 @@ public class MVCModelo {
 		return datos;
 	}
 
-	//3B
 	// 1C
-	
+	public Queue<Node<String>> compararViajesFranjaHoraria(int zonaI, int zonaD, int horaI,int horaF) {
+
+	    int inicio=horaI;
+	    int fin=horaF;
+		Queue<Node<String>> datos=new Queue<Node<String>>(null);
+	    while(inicio<=fin){
+	    	  boolean x=false;
+	    	  Node check= colaS.darPrimerNodo();
+	    		while(check.darSiguiente()!=null&&!x){
+	    			Viaje actual= (Viaje)check.darItem();
+	    			if(actual.darInicioID()==zonaI&&actual.darDestinoID()==zonaD&&actual.darInicioID()==inicio){
+	    			 datos.enQueue(actual.darTiempoPromedioEnSegundos()+","+actual.darDesviacionEstandar());
+	    			 x=true;
+	    			}
+	    			
+	    		}
+	    		
+	    		
+	    	
+	    			
+	    		
+	    		inicio++;
+	    		
+	    }
+		return datos;
+	}	
 	/////
 	//Requerimientos parte B
 	/////

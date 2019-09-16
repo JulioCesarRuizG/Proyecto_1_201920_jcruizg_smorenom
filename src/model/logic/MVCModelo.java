@@ -281,38 +281,43 @@ public class MVCModelo {
 	
 	// 1A
 
-	public void consultarTiempoPromedioYDesviacion(int zonaOrigen, int zonaDestino, int mes) throws Exception
+	public Queue<Node<String>> consultarTiempoPromedioYDesviacionMes(int zonaOrigen, int zonaDestino, int mes) throws Exception
 	{
 		String info = "**Datos de los viajes**" + "\n" + "Tiempo promedio // Desviación estandar" + "\n";
 		Node primero = colaM.darContenedorPrimero();
+		Queue<Node<String>> datos=new Queue<Node<String>>(null);
+		datos.enQueue(info);
 		while(primero.darSiguiente() != null)
 		{
 			Viaje viaje = (Viaje)primero.darItem();
 			if(viaje.darDestinoID() == zonaDestino && viaje.darInicioID() == zonaOrigen && viaje.darParametro() == mes)
-			{
-				info = info +viaje.darTiempoPromedioEnSegundos() + " // " + viaje.darDesviacionEstandar() + "\n";
+			{    
+				datos.enQueue(viaje.darTiempoPromedioEnSegundos() + " // " + viaje.darDesviacionEstandar());
+				
 			}
 
 			primero = primero.darSiguiente();
 		}
-		if(info.equals("**Datos de los viajes**" + "\n" + "Tiempo promedio // Desviación estandar" + "\n"))
+		if(datos.size()==1)
 		{
 			throw new NoHayException("No hay viajes que cumplan la condición", null);
 		}
 		else
 		{
-			System.out.println(info);
+			return datos;
 		}
+		
 	}
 	
 	// 1B
 	
-	public void MayorTiempoPromedioNViajes(int N, int mes) {
+	public Queue<Node<String>> MayorTiempoPromedioNViajesMes(int N, int mes) {
 		int valor = N;
 		int num = 0;
 		//Falta ordenar la colaM en este punto
 		Node lugar = colaM.darPrimerNodo();
 		Viaje viaje = (Viaje) lugar.darItem();
+		Queue<Node<String>> datos=new Queue<Node<String>>(null);
 		System.out.println("Los " + N + " viajes con los mayores tiempos promedio para el mes " + mes + " son:");
 		while(valor >= 0 && viaje != null)
 		{
@@ -320,13 +325,66 @@ public class MVCModelo {
 			{
 			num ++;
 			System.out.println(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar() );
+			datos.enQueue(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar());
 			valor --;
 			viaje = (Viaje) lugar.darSiguiente().darItem();
 			lugar = lugar.darSiguiente();
 			}
 		}
+		return datos;
+	}
+	public Queue<Node<String>> consultarTiempoPromedioYDesviacionDia(int zonaOrigen, int zonaDestino, int dia) throws Exception
+	{
+		String info = "**Datos de los viajes**" + "\n" + "Tiempo promedio // Desviación estandar" + "\n";
+		Node primero = colaS.darContenedorPrimero();
+		Queue<Node<String>> datos=new Queue<Node<String>>(null);
+		datos.enQueue(info);
+		while(primero.darSiguiente() != null)
+		{
+			Viaje viaje = (Viaje)primero.darItem();
+			if(viaje.darDestinoID() == zonaDestino && viaje.darInicioID() == zonaOrigen && viaje.darParametro() == dia)
+			{
+				datos.enQueue(viaje.darTiempoPromedioEnSegundos() + " // " + viaje.darDesviacionEstandar());
+			}
+
+			primero = primero.darSiguiente();
+		}
+		if(datos.size()==1)
+		{
+			throw new NoHayException("No hay viajes que cumplan la condición", null);
+		}
+		else
+		{
+			return datos;
+		}
 	}
 	
+	//2B
+	
+	public Queue<Node<String>> MayorTiempoPromedioNViajesDia(int N, int dia) {
+		int valor = N;
+		int num = 0;
+		//Falta ordenar la colaS en este punto
+		Node lugar = colaS.darPrimerNodo();
+		Viaje viaje = (Viaje) lugar.darItem();
+		System.out.println("Los " + N + " viajes con los mayores tiempos promedio para el mes " + dia + " son:");
+		Queue<Node<String>> datos=new Queue<Node<String>>(null);
+		while(valor >= 0 && viaje != null)
+		{
+			if(viaje.darParametro() == dia)
+			{
+			num ++;
+			System.out.println(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar() );
+			datos.enQueue(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar());
+			valor --;
+			viaje = (Viaje) lugar.darSiguiente().darItem();
+			lugar = lugar.darSiguiente();
+			}
+		}
+		return datos;
+	}
+
+	//3B
 	// 1C
 	
 	/////

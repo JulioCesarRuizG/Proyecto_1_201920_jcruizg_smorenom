@@ -309,117 +309,131 @@ public class MVCModelo {
 		
 	}
 	
-	// 1B
+	// 2A
 	
-	public Queue<Node<String>> MayorTiempoPromedioNViajesMes(int N, int mes) {
-		int valor = N;
-		int num = 0;
-		//Falta ordenar la colaM en este punto
-		Node lugar = colaM.darPrimerNodo();
-		Viaje viaje = (Viaje) lugar.darItem();
-		Queue<Node<String>> datos=new Queue<Node<String>>(null);
-		System.out.println("Los " + N + " viajes con los mayores tiempos promedio para el mes " + mes + " son:");
-		while(valor >= 0 && viaje != null)
-		{
-			if(viaje.darParametro() == mes)
+		public Queue<Node<String>> MayorTiempoPromedioNViajesMes(int N, int mes) {
+			int valor = N;
+			int num = 0;
+			//Falta ordenar la colaM en este punto
+			Node lugar = colaM.darPrimerNodo();
+			Viaje viaje = (Viaje) lugar.darItem();
+			Queue<Node<String>> datos=new Queue<Node<String>>(null);
+			System.out.println("Los " + N + " viajes con los mayores tiempos promedio para el mes " + mes + " son:");
+			while(valor >= 0 && viaje != null)
 			{
-			num ++;
-			System.out.println(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar() );
-			datos.enQueue(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar());
-			valor --;
-			viaje = (Viaje) lugar.darSiguiente().darItem();
-			lugar = lugar.darSiguiente();
+				if(viaje.darParametro() == mes)
+				{
+				num ++;
+				System.out.println(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar() );
+				datos.enQueue(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar());
+				valor --;
+				viaje = (Viaje) lugar.darSiguiente().darItem();
+				lugar = lugar.darSiguiente();
+				}
 			}
-		}
-		return datos;
-	}
-	//1B
-	public Queue<Node<String>> consultarTiempoPromedioYDesviacionDia(int zonaOrigen, int zonaDestino, int dia) throws Exception
-	{
-		String info = "**Datos de los viajes**" + "\n" + "Tiempo promedio // Desviación estandar" + "\n";
-		Node primero = colaS.darContenedorPrimero();
-		Queue<Node<String>> datos=new Queue<Node<String>>(null);
-		datos.enQueue(info);
-		while(primero.darSiguiente() != null)
-		{
-			Viaje viaje = (Viaje)primero.darItem();
-			if(viaje.darDestinoID() == zonaDestino && viaje.darInicioID() == zonaOrigen && viaje.darParametro() == dia)
-			{
-				datos.enQueue(viaje.darTiempoPromedioEnSegundos() + " // " + viaje.darDesviacionEstandar());
-			}
-
-			primero = primero.darSiguiente();
-		}
-		if(datos.size()==1)
-		{
-			throw new NoHayException("No hay viajes que cumplan la condición", null);
-		}
-		else
-		{
 			return datos;
 		}
-	}
 	
-	//2B
+
 	
-	public Queue<Node<String>> MayorTiempoPromedioNViajesDia(int N, int dia) {
-		int valor = N;
-		int num = 0;
-		//Falta ordenar la colaS en este punto
-		Node lugar = colaS.darPrimerNodo();
-		Viaje viaje = (Viaje) lugar.darItem();
-		System.out.println("Los " + N + " viajes con los mayores tiempos promedio para el mes " + dia + " son:");
-		Queue<Node<String>> datos=new Queue<Node<String>>(null);
-		while(valor >= 0 && viaje != null)
+
+
+	
+	/////
+	//Requerimientos parte B
+	/////
+	
+	//1B
+		public Queue<Node<String>> consultarTiempoPromedioYDesviacionDia(int zonaOrigen, int zonaDestino, int dia) throws Exception
 		{
-			if(viaje.darParametro() == dia)
+			String info = "**Datos de los viajes**" + "\n" + "Tiempo promedio // Desviación estandar" + "\n";
+			Node primero = colaS.darContenedorPrimero();
+			Queue<Node<String>> datos=new Queue<Node<String>>(null);
+			datos.enQueue(info);
+			while(primero.darSiguiente() != null)
 			{
-			num ++;
-			System.out.println(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar() );
-			datos.enQueue(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar());
-			valor --;
-			viaje = (Viaje) lugar.darSiguiente().darItem();
-			lugar = lugar.darSiguiente();
+				Viaje viaje = (Viaje)primero.darItem();
+				if(viaje.darDestinoID() == zonaDestino && viaje.darInicioID() == zonaOrigen && viaje.darParametro() == dia)
+				{
+					datos.enQueue(viaje.darTiempoPromedioEnSegundos() + " // " + viaje.darDesviacionEstandar());
+				}
+
+				primero = primero.darSiguiente();
+			}
+			if(datos.size()==1)
+			{
+				throw new NoHayException("No hay viajes que cumplan la condición", null);
+			}
+			else
+			{
+				return datos;
 			}
 		}
-		return datos;
-	}
-
+		
+		//2B
+		
+		public Queue<Node<String>> MayorTiempoPromedioNViajesDia(int N, int dia) {
+			int valor = N;
+			int num = 0;
+			//Falta ordenar la colaS en este punto
+			Node lugar = colaS.darPrimerNodo();
+			Viaje viaje = (Viaje) lugar.darItem();
+			System.out.println("Los " + N + " viajes con los mayores tiempos promedio para el mes " + dia + " son:");
+			Queue<Node<String>> datos=new Queue<Node<String>>(null);
+			while(valor >= 0 && viaje != null)
+			{
+				if(viaje.darParametro() == dia)
+				{
+				num ++;
+				System.out.println(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar() );
+				datos.enQueue(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar());
+				valor --;
+				viaje = (Viaje) lugar.darSiguiente().darItem();
+				lugar = lugar.darSiguiente();
+				}
+			}
+			return datos;
+		}
+	
 	//3B
-	public Queue<Node<String>> compararTiemposZonaDadaDia(int zonaI, int zonaF, int zonaX,int dia) {
+		public Queue<Node<String>> compararTiemposZonaDadaDia(int zonaI, int zonaF, int zonaX,int dia) {
 
-	    int inicio=zonaI;
-	    int fin=zonaF;
-		Queue<Node<String>> datos=new Queue<Node<String>>(null);
-	    while(inicio<=fin){
-	    	  String tiempo1="No hay viajes";
-	    	  String tiempo2="No hay viajes";
-	    	  boolean x=false;
-	    	  Node check= colaS.darPrimerNodo();
-	    		while(check.darSiguiente()!=null&&!x){
-	    			Viaje actual= (Viaje)check.darItem();
-	    			if((actual.darInicioID()==inicio&&actual.darDestinoID()==zonaX&&actual.darParametro()==dia)){
-	    				tiempo1=String.valueOf(actual.darTiempoPromedioEnSegundos());
-	    			}
-	    			if((actual.darInicioID()==zonaX&&actual.darDestinoID()==inicio)&&actual.darParametro()==dia){
-	    				tiempo2=String.valueOf(actual.darTiempoPromedioEnSegundos());
-	    			}
-	    			if(!tiempo1.equals("No hay viajes")&&!tiempo2.equals("No hay viajes")){
-	    				x=true;
-	    			}
-	    			
-	    		}
-	    		
-	    		datos.enQueue(tiempo1+ "  de  " +inicio+ "  a  "+ zonaX+ "  vs  " +tiempo2+ "  de  "+ zonaX+ "  a  "+inicio);
-	    	
-	    			
-	    		
-	    		inicio++;
-	    		
-	    }
-		return datos;
-	}
-
+		    int inicio=zonaI;
+		    int fin=zonaF;
+			Queue<Node<String>> datos=new Queue<Node<String>>(null);
+		    while(inicio<=fin){
+		    	  String tiempo1="No hay viajes";
+		    	  String tiempo2="No hay viajes";
+		    	  boolean x=false;
+		    	  Node check= colaS.darPrimerNodo();
+		    		while(check.darSiguiente()!=null&&!x){
+		    			Viaje actual= (Viaje)check.darItem();
+		    			if((actual.darInicioID()==inicio&&actual.darDestinoID()==zonaX&&actual.darParametro()==dia)){
+		    				tiempo1=String.valueOf(actual.darTiempoPromedioEnSegundos());
+		    			}
+		    			if((actual.darInicioID()==zonaX&&actual.darDestinoID()==inicio)&&actual.darParametro()==dia){
+		    				tiempo2=String.valueOf(actual.darTiempoPromedioEnSegundos());
+		    			}
+		    			if(!tiempo1.equals("No hay viajes")&&!tiempo2.equals("No hay viajes")){
+		    				x=true;
+		    			}
+		    			
+		    		}
+		    		
+		    		datos.enQueue(tiempo1+ "  de  " +inicio+ "  a  "+ zonaX+ "  vs  " +tiempo2+ "  de  "+ zonaX+ "  a  "+inicio);
+		    	
+		    			
+		    		
+		    		inicio++;
+		    		
+		    }
+			return datos;
+		}
+	
+	/////
+	//Requerimientos parte C
+	/////
+	
 	// 1C
 	public Queue<Node<String>> compararViajesFranjaHoraria(int zonaI, int zonaD, int horaI,int horaF) {
 
@@ -447,13 +461,73 @@ public class MVCModelo {
 	    }
 		return datos;
 	}	
-	/////
-	//Requerimientos parte B
-	/////
+	//2C
 	
+	public Queue<Node<String>> MayorTiempoPromedioNViajesHora(int N, int mes) {
+		int valor = N;
+		int num = 0;
+		//Falta ordenar la colaH en este punto
+		Node lugar = colaM.darPrimerNodo();
+		Viaje viaje = (Viaje) lugar.darItem();
+		Queue<Node<String>> datos=new Queue<Node<String>>(null);
+		System.out.println("Los " + N + " viajes con los mayores tiempos promedio para el mes " + mes + " son:");
+		while(valor >= 0 && viaje != null)
+		{
+			if(viaje.darParametro() == mes)
+			{
+			num ++;
+			System.out.println(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar() );
+			datos.enQueue(num + ": zona origen-" + viaje.darInicioID() + ", zona destino-" + viaje.darDestinoID() + ", tiempo promedio de viaje-" + viaje.darTiempoPromedioEnSegundos() + ", desviación estandar-" + viaje.darDesviacionEstandar());
+			valor --;
+			viaje = (Viaje) lugar.darSiguiente().darItem();
+			lugar = lugar.darSiguiente();
+			}
+		}
+		return datos;
+	}
 	
-	/////
-	//Requerimientos parte C
-	/////
+	//3C
 	
+	public void ASCIIZonas(int zonaOrigen, int zonaDestino)
+	{
+		String todo= "Aproximación en minutos de viajes entre zona origen y zona destino." + "\n" + "Trimestre X del 2018 detallado por cada hora del día" + "\n" + "Zona Origen: "+ zonaOrigen + "\n"+ "Zona Destino: " + zonaDestino + "\n" + "Hora| # de minutos" + "\n";
+		int cantidad = 0;
+		Node actual = colaH.darPrimerNodo();
+		boolean encontrado = false;
+		for(int i=0 ; i<24 ; i++)
+		{
+			while(actual.darSiguiente() != null && encontrado == false)
+			{
+				Viaje viaje = (Viaje) actual.darItem();
+				if(viaje.darParametro() == i && viaje.darInicioID() == zonaOrigen && viaje.darDestinoID() == zonaDestino)
+				{
+					double decimal = viaje.darTiempoPromedioEnSegundos();
+					int entera = (int) viaje.darTiempoPromedioEnSegundos();
+					if(decimal-entera >= 0.5)
+					{
+						cantidad =entera + 1;
+					}
+					else 
+					{
+						cantidad =entera;
+					}
+					encontrado = true;
+				}
+				actual = actual.darSiguiente();
+			}
+			String asteriscos = "";
+			while(cantidad != 0)
+			{
+				asteriscos = asteriscos + "*";
+				cantidad --;
+			}
+			if(asteriscos.equals(""))
+			{
+				asteriscos = "hora sin viajes";
+			}
+			todo = todo + "0" + i + "  |  " + asteriscos + "\n";
+			encontrado = false;
+		}
+		System.out.println(todo);
+	}
 }

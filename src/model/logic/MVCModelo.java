@@ -367,7 +367,7 @@ public class MVCModelo {
 	
 	//3A
 	
-		public Queue<Node<String>> compararTiempoPromedioPorZonas(int zonaI, int zonaF, int zonaX,int mes) {
+		public Queue<Node<String>> compararTiempoPromedioPorZonasMes(int zonaI, int zonaF, int zonaX,int mes) {
 
 		    int inicio=zonaI;
 		    int fin=zonaF;

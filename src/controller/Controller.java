@@ -83,7 +83,23 @@ public class Controller {
 					
 					break;	
 				case 4: 
-					System.out.println("--------- \n Hasta pronto !! \n---------"); 
+					System.out.println("--------- \n Dar zona menor del rango para comparar los tiempos promedios de los viajes para una zona dada contra cada zona X en un rango de zonas dado en ambos sentidos para un mes dado"); 
+					 int zonaMenorM= lector.nextInt();
+					 System.out.println("--------- \n Dar zona mayor");
+					 int zonaMayorM=lector.nextInt();
+					 System.out.println("--------- \n Dar zona a comparar");
+					 int zonaXM=lector.nextInt();
+					 System.out.println("--------- \n Dar dia dado");
+					 int mesZonas=lector.nextInt();
+				try {
+					Queue<Node<String>> consultaMZ=modelo.compararTiempoPromedioPorZonasMes(zonaMenorM, zonaMayorM, zonaXM, mesZonas);
+					while(!consultaMZ.isEmpty()){
+						System.out.println(consultaMZ.deQueue());
+					}
+				} catch (Exception e) {
+					
+					System.out.println(e.getMessage());
+				}
 					
 					
 					break;	

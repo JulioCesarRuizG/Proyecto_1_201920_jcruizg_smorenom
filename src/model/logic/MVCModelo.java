@@ -591,6 +591,9 @@ public class MVCModelo {
 			else
 				datos.enQueue(i + "  |  " + asteriscos);
 			encontrado = false;
+			actual = colaH.darPrimerNodo(); //Cómo no está organizado se debe poner el apuntador al comienzo en el caso en que el siguiente viaje esté antes del que se encontró (el siguiente i)
+			cantidad = 0;
+			
 		}
 		return datos;
 	}

@@ -12,36 +12,99 @@ import org.junit.Test;
 public class TestMVCModelo {
 
 	private MVCModelo modelo;
-
-	/**
-	 * Escenario 1
-	 * @throws Exception
-	 */
-	@Before
-	public void setUp1() throws Exception {
-		//./data/bogota-cadastral-2018-1-All-HourlyAggregate.csv
-		try
-		{
-			modelo= new MVCModelo(2);
-		}
-		catch (Exception e) {
-			fail("Error al cargar los archivos: "+"/n"+"bogota-cadastral-2018-2-WeeklyAggregate.csv"+"/n"+".data/bogota-cadastral-2018-2-HourlyAggregate.csv"+"/n"+".data/bogota-cadastral-2018-2-MonthlyAggregate.csv");
-		}
-	}
 	
-	/**
-	 * Escenario 2
-	 */
 	@Before
-	public void setUp2()
-	{
-		try
-		{
-			modelo= new MVCModelo(3);
+	public void setUp1() {
+	    try {
+			modelo=new MVCModelo(0);
 		}
-		catch (Exception e) {
-			fail("Error al cargar los archivos: "+"/n"+"bogota-cadastral-2018-3-WeeklyAggregate.csv"+"/n"+".data/bogota-cadastral-2018-3-HourlyAggregate.csv"+"/n"+".data/bogota-cadastral-2018-3-MonthlyAggregate.csv");
-		}
+	    datos=new ArregloDinamico(21);
+	    datos.agregar(new UBERTrip(30,80,5,900,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,1000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,2000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,3000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,4000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,5000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,6000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,7000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,8000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,9000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,10000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,20000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,30000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,40000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,50000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,50000,200,40,660));
+		datos.agregar(new UBERTrip(40,7,5,100000,100,20,30));
+		datos.agregar(new UBERTrip(8,30,5,200000,500,770,40));
+		datos.agregar(new UBERTrip(5,20,5,200000,1000,50,10));
+		datos.agregar(new UBERTrip(3,80,5,300000,80,10,50));
+		datos.agregar(new UBERTrip(11,20,5,400000,80000,45,23));
+	}
+
+	public void setUp2() {
+		 try {
+				modelo=new MVCModelo(".data/pruebas 20 ordenadas ascendentes.csv");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		datos=new ArregloDinamico(21);
+		
+		datos.agregar(new UBERTrip(11,20,5,400000,80000,45,23));
+		datos.agregar(new UBERTrip(3,80,5,300000,80,10,50));
+		datos.agregar(new UBERTrip(5,20,5,200000,1000,50,10));
+		datos.agregar(new UBERTrip(8,30,5,200000,500,770,40));
+		datos.agregar(new UBERTrip(40,7,5,100000,100,20,30));
+		datos.agregar(new UBERTrip(30,80,5,50000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,50000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,40000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,30000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,20000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,10000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,9000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,8000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,7000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,6000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,5000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,4000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,3000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,2000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,1000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,900,100,30,50));
+	}
+	public void setUp3() {
+		 try {
+				modelo=new MVCModelo(".data/pruebas 20 ordenadas ascendentes.csv");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		datos=new ArregloDinamico(21);
+		datos.agregar(new UBERTrip(11,20,5,400000,80000,45,23));
+		datos.agregar(new UBERTrip(30,80,5,3000,200,40,660));
+		
+		datos.agregar(new UBERTrip(8,30,5,200000,500,770,40));
+		datos.agregar(new UBERTrip(40,7,5,100000,100,20,30));
+	
+		datos.agregar(new UBERTrip(30,80,5,50000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,40000,200,40,660));
+		datos.agregar(new UBERTrip(3,80,5,300000,80,10,50));
+		datos.agregar(new UBERTrip(5,20,5,200000,1000,50,10));
+		datos.agregar(new UBERTrip(30,80,5,30000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,20000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,10000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,900,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,9000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,8000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,7000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,6000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,5000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,4000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,50000,200,40,660));
+		datos.agregar(new UBERTrip(30,80,5,2000,100,30,50));
+		datos.agregar(new UBERTrip(30,80,5,1000,200,40,660));
+	
+	
 	}
 
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.opencsv.CSVReader;
 
 import Exceptions.NoHayException;
+import model.data_structures.ArregloDinamico;
 import model.data_structures.Node;
 import model.data_structures.Queue;
 import model.data_structures.Stack;
@@ -274,6 +275,38 @@ public class MVCModelo {
 		System.out.print("La zona con el menor identificador es la zona: "+min);
 	}
 
+	
+	public Queue OrdenarPorshellSort(Queue elementos) 
+	{ 
+		ArrayList<Viaje> lista = new ArrayList<Viaje>();
+		while(!elementos.isEmpty())
+		{
+			Node nodo = elementos.darPrimerNodo();
+			Viaje viaje = (Viaje) nodo.darItem();
+			lista.add(viaje);
+			elementos.deQueue();
+		}
+		int N=elementos.size();
+	    int h=1;
+		for (int num = N/2; num > 0; num /= 2) 
+		{ 
+			for (int i = num; i < N; i += 1) 
+			{ 
+				Viaje temp = lista.get(i);
+				int j;             
+				for (j = i; j >= num && lista.get(j-num).darTiempoPromedioEnSegundos() > temp.darTiempoPromedioEnSegundos(); j -= num) 
+				{
+					lista.add(j, lista.get(j-num));
+				}
+				lista.add(j, temp);
+			} 
+		}
+		for(int i=0 ; i<lista.size() ; i++)
+		{
+			elementos.enQueue(lista.get(i));
+		}
+		return elementos;
+	} 
 
 	/////
 	//Requerimientos parte A
@@ -314,8 +347,8 @@ public class MVCModelo {
 		public Queue<Node<String>> MayorTiempoPromedioNViajesMes(int N, int mes) {
 			int valor = N;
 			int num = 0;
-			//Falta ordenar la colaM en este punto
-			Node lugar = colaM.darPrimerNodo();
+			Queue colaOrdenada = OrdenarPorshellSort(colaM);
+			Node lugar = colaOrdenada.darPrimerNodo();
 			Viaje viaje = (Viaje) lugar.darItem();
 			Queue<Node<String>> datos=new Queue<Node<String>>(null);
 			System.out.println("Los " + N + " viajes con los mayores tiempos promedio para el mes " + mes + " son:");
@@ -374,8 +407,8 @@ public class MVCModelo {
 		public Queue<Node<String>> MayorTiempoPromedioNViajesDia(int N, int dia) {
 			int valor = N;
 			int num = 0;
-			//Falta ordenar la colaS en este punto
-			Node lugar = colaS.darPrimerNodo();
+			Queue colaOrdenada = OrdenarPorshellSort(colaS);
+			Node lugar = colaOrdenada.darPrimerNodo();
 			Viaje viaje = (Viaje) lugar.darItem();
 			System.out.println("Los " + N + " viajes con los mayores tiempos promedio para el mes " + dia + " son:");
 			Queue<Node<String>> datos=new Queue<Node<String>>(null);
@@ -464,8 +497,8 @@ public class MVCModelo {
 	public Queue<Node<String>> MayorTiempoPromedioNViajesHora(int N, int hora) {
 		int valor = N;
 		int num = 0;
-		//Falta ordenar la colaH en este punto
-		Node lugar = colaH.darPrimerNodo();
+		Queue colaOrdenada = OrdenarPorshellSort(colaH);
+		Node lugar = colaOrdenada.darPrimerNodo();
 		Viaje viaje = (Viaje) lugar.darItem();
 		Queue<Node<String>> datos=new Queue<Node<String>>(null);
 		System.out.println("Los " + N + " viajes con los mayores tiempos promedio para el hora " + hora + " son:");

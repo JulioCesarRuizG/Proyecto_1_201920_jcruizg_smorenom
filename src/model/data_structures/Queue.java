@@ -9,7 +9,7 @@ public class Queue<T> implements IQueue{
 
 	private Node primero;
 	private Node ultimo;
-	
+
 	/**
 	 * Crea una nueva cola
 	 */
@@ -23,7 +23,7 @@ public class Queue<T> implements IQueue{
 		}
 		ultimo = actual;
 	}
-	
+
 	/**
 	 * Devuelve el primer viaje de la cola
 	 * @return primer viaje
@@ -36,12 +36,12 @@ public class Queue<T> implements IQueue{
 	{
 		return primero;
 	}
-	
+
 	public Node darPrimerNodo()
 	{
 		return primero;
 	}
-	
+
 	/**
 	 * Devuelve el ultimo viaje de la cola
 	 * @return ultimo viaje
@@ -127,6 +127,21 @@ public class Queue<T> implements IQueue{
 			}
 			return cantidad;
 		}
+	}
+
+	public Node darElemento(int i)
+	{
+		int valor = i;
+		Node actual = this.darPrimerNodo();
+		while(valor != 0)
+		{
+			if(actual.darSiguiente() != null)
+			{
+				actual = actual.darSiguiente();
+			}
+			valor --;
+		}
+		return actual;
 	}
 
 	/**
